@@ -15,6 +15,34 @@ const Home: NextPage = () => {
   const [selectedValue, setSelectedValue] = useState("");
   const [salary, setSalary] = useState<number | "">("");
 
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+
+    const formData = {
+      fullName,
+      age: Number(age) || null,
+      weight: Number(weight) || null,
+      selectedValue,
+      salary: Number(salary) || null,
+    };
+
+    console.log("this is the data:", formData);
+
+    // try {
+    //   const response = await fetch("", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(formData),
+    //   });
+    //   const result = await response.json();
+    //   console.log("Success:", result);
+    // } catch (error) {
+    //   console.error("Error:", error);
+    // }
+  };
+
   return (
     <>
       <div className="flex items-center flex-col flex-grow pt-10">
@@ -61,7 +89,10 @@ const Home: NextPage = () => {
               <p className="my-0 ml-3">Annual Salary</p>
               <InputBase name="salary" placeholder="Enter annual salary" value={salary} onChange={setSalary} />
             </div>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+              onClick={handleSubmit}
+            >
               Submit
             </button>
           </div>
